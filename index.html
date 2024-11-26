@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            color: #d14;
+        }
+    </style>
+</head>
+<body>
+    <h1>Metoder</h1>
+
+    <h2>Del 1</h2>
+
+    <h3>1. Hva er forskjellen mellom en metode og en funksjon?</h3>
+    <p>En funksjon er en selvstendig blokk med kode som kan kalles uavhengig. En metode er en funksjon som er bundet til et objekt.</p>
+    <pre>
+<code>
+// Eksempel på en funksjon
+function minFunksjon() {
+    console.log("Dette er en funksjon.");
+}
+minFunksjon();
+
+// Eksempel på en metode
+const objekt = {
+    metode: function() {
+        console.log("Dette er en metode.");
+    }
+};
+objekt.metode();
+</code>
+    </pre>
+
+    <h3>2. Hva er en static-metode?</h3>
+    <p>En <code>static</code>-metode er definert på klassenivå og kan kalles direkte på klassen uten å opprette en instans.</p>
+    <pre>
+<code>
+class Klasse {
+    static hils() {
+        console.log("Hei fra en static-metode!");
+    }
+}
+Klasse.hils();
+</code>
+    </pre>
+
+    <h3>3. Hva er en instance-metode?</h3>
+    <p>En <code>instance</code>-metode er bundet til en spesifikk instans av en klasse og opererer på dens data.</p>
+    <pre>
+<code>
+class Klasse {
+    hils() {
+        console.log("Hei fra en instance-metode!");
+    }
+}
+const instans = new Klasse();
+instans.hils();
+</code>
+    </pre>
+
+    <h3>4-8. Operasjoner med tekst</h3>
+    <p>Her er en lengre tekst hentet fra nettet, delt opp og kombinert ved hjelp av metoder:</p>
+    <pre id="tekst-operasjoner"></pre>
+
+    <h2>Del 2</h2>
+
+    <h3>1. Lag et array som inneholder 20 tall</h3>
+    <p>For å lage et array med 20 tall, kan vi bruke <code>Array.from</code> med en tilfeldig genereringsfunksjon.</p>
+    <pre>
+<code>
+const tallArray = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100));
+console.log(tallArray);
+</code>
+    </pre>
+
+    <h3>2. Sjekk om det inneholder det samme tallet flere ganger</h3>
+    <p>For å sjekke om et array inneholder duplikater, kan vi bruke <code>some</code>-metoden sammen med <code>indexOf</code>.</p>
+    <pre>
+<code>
+const harDuplikater = tallArray.some((val, idx) => tallArray.indexOf(val) !== idx);
+console.log(harDuplikater ? "Arrayet inneholder duplikater." : "Arrayet inneholder ingen duplikater.");
+</code>
+    </pre>
+
+    <h3>3. Hvis ikke, erstatt 4 av tallene med det samme tallet</h3>
+    <p>Hvis det ikke er duplikater, kan vi erstatte fire tall med samme verdi.</p>
+    <pre>
+<code>
+if (!harDuplikater) {
+    const nyttTall = 99; // Et eksempel på et fast tall
+    tallArray[0] = nyttTall;
+    tallArray[1] = nyttTall;
+    tallArray[2] = nyttTall;
+    tallArray[3] = nyttTall;
+}
+console.log("Oppdatert array:", tallArray);
+</code>
+    </pre>
+
+    <h3>4. Sorter disse tallene i stigende rekkefølge</h3>
+    <p>For å sortere tallene i stigende rekkefølge, kan vi bruke <code>sort</code>-metoden med en sammenligningsfunksjon.</p>
+    <pre>
+<code>
+tallArray.sort((a, b) => a - b);
+console.log("Sortert array:", tallArray);
+</code>
+    </pre>
+
+    <h3>5. Gang alle tallene dine med 3 og console.log ut det nye arrayet</h3>
+    <p>For å multiplisere alle tallene med 3, kan vi bruke <code>map</code>-metoden.</p>
+    <pre>
+<code>
+const gangetArray = tallArray.map(num => num * 3);
+console.log("Array ganget med 3:", gangetArray);
+</code>
+    </pre>
+
+    <script>
+        // Del 1: Tekstoperasjoner
+        const tekst = "JavaScript er et programmeringsspråk som er en del av de tre kjerne-teknologiene for World Wide Web, sammen med HTML og CSS. JavaScript gjør det mulig å lage interaktive nettsider og er en viktig del av webapplikasjoner. De fleste nettsider bruker JavaScript, og alle moderne nettlesere støtter det uten behov for plugins. JavaScript er et høynivå, tolket språk som er lett å lære for nybegynnere. Det er dynamisk typet, prototype-basert og støtter objektorientert, imperativ og funksjonell programmeringsstil.";
+
+        const tekstLengde = tekst.length;
+        const punkt1 = 50;
+        const punkt2 = 150;
+        const del1 = tekst.substring(0, punkt1);
+        const del2 = tekst.substring(punkt1, punkt2);
+        const del3 = tekst.substring(punkt2);
+
+        const kombinertTekst = `${del1}\n---\n${del2}\n---\n${del3}`;
+
+        document.getElementById('tekst-operasjoner').textContent = `Original tekst (${tekstLengde} tegn):\n${tekst}\n\nOppdelt tekst:\n${kombinertTekst}`;
+
+        // Del 2: Array-operasjoner
+        const tallArray = Array.from({ length: 20 }, () => Math.floor(Math.random() * 100));
+
+        const harDuplikater = tallArray.some((val, idx) => tallArray.indexOf(val) !== idx);
+
+        if (!harDuplikater) {
+            const nyttTall = Math.floor(Math.random() * 100);
+            tallArray[0] = nyttTall;
+            tallArray[1] = nyttTall;
+            tallArray[2] = nyttTall;
+            tallArray[3] = nyttTall;
+        }
+
+        tallArray.sort((a, b) => a - b);
+        const gangetArray = tallArray.map(num => num * 3);
+
+        console.log("Originalt array:", tallArray);
+        console.log("Ganget med 3:", gangetArray);
+    </script>
+</body>
+</html>
